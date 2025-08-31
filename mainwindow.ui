@@ -1,0 +1,2011 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>988</width>
+    <height>727</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1231</width>
+      <height>731</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTabWidget {
+    background-color: #f0f0f0;
+}
+
+/* Set rounded corners for the tab bar */
+QTabBar {
+    border-radius: 5px;
+    border: 1px solid black; /* Add a 1px black border */
+}
+
+/* Increase spacing between tabs */
+QTabBar::tab {
+    margin-left: 0px; /* Adjust spacing as needed */
+    margin-right: 0px; /* Adjust spacing as needed */
+}
+
+/* Increase tab size and add horizontal padding */
+QTabBar::tab {
+    min-width: 70px; /* Adjust width as needed */
+    min-height: 30px; /* Adjust height as needed */
+    padding: 0px 10px; /* Add 5px padding on top/bottom, 10px on left/right */
+}
+
+/* Set background color and text color for individual tabs */
+QTabBar::tab {
+    background-color: #193b68;
+    color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: 1px solid black; /* Add a 1px black border for each tab */
+}
+
+/* Change background and text color for selected tab */
+QTabBar::tab:selected {
+    background-color: #abdbe3;
+    color: white;
+}
+
+</string>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>gestion commande</string>
+     </attribute>
+     <widget class="QTabWidget" name="modifier_5">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1021</width>
+        <height>941</height>
+       </rect>
+      </property>
+      <property name="contextMenuPolicy">
+       <enum>Qt::PreventContextMenu</enum>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="accessibleDescription">
+       <string/>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QTabWidget {
+    background-color: #f0f0f0;
+}
+
+/* Set rounded corners for the tab bar */
+QTabBar {
+    border-radius: 5px;
+    border: 1px solid black; /* Add a 1px black border */
+}
+
+/* Increase spacing between tabs */
+QTabBar::tab {
+    margin-left: 0px; /* Adjust spacing as needed */
+    margin-right: 0px; /* Adjust spacing as needed */
+}
+
+/* Increase tab size and add horizontal padding */
+QTabBar::tab {
+    min-width: 70px; /* Adjust width as needed */
+    min-height: 30px; /* Adjust height as needed */
+    padding: 0px 10px; /* Add 5px padding on top/bottom, 10px on left/right */
+}
+
+/* Set background color and text color for individual tabs */
+QTabBar::tab {
+    background-color: #193b68;
+    color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: 1px solid black; /* Add a 1px black border for each tab */
+}
+
+/* Change background and text color for selected tab */
+QTabBar::tab:selected {
+    background-color: #abdbe3;
+    color: white;
+}
+</string>
+      </property>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="Ajouter_3">
+       <property name="accessibleName">
+        <string/>
+       </property>
+       <attribute name="title">
+        <string>Ajouter et modifier</string>
+       </attribute>
+       <widget class="QGroupBox" name="groupBox_Ajouter_3">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>-20</y>
+          <width>1021</width>
+          <height>611</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QGroupBox {
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    border-radius: 4px;
+    margin-top: 10px; /* Adjust margin as needed */
+    background-color: #2a2a69; /* Darker shade of blue for background */
+}
+
+/* Title color */
+QGroupBox::title {
+    subcontrol-origin: margin;
+    padding: 0 3px;
+    color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+}
+
+/* Hover effect */
+QGroupBox:hover {
+    border: 2px solid #abdbe3; /* Change border color on hover */
+}
+
+/* Disabled state */
+QGroupBox:disabled {
+    border: 2px solid #a9a9a9; /* Dark grey border for disabled state */
+}
+
+/* Disabled title color */
+QGroupBox:disabled::title {
+    color: #d3d3d3; /* Light grey for disabled title */
+}
+</string>
+        </property>
+        <property name="title">
+         <string>Ajouter un employé</string>
+        </property>
+        <widget class="QWidget" name="layoutWidget_9">
+         <property name="geometry">
+          <rect>
+           <x>130</x>
+           <y>110</y>
+           <width>701</width>
+           <height>271</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_9">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <item>
+             <widget class="QLabel" name="label_prenom_9">
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+    color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 1px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    padding: 6px; /* Adjust padding as needed */
+    border-radius: 4px;
+    background-color: #2a2a69; /* Darker shade of blue for background */
+}
+
+/* Hover effect */
+QLabel:hover {
+    background-color: #1a1a49; /* Dark blue on hover */
+}
+
+/* Disabled state */
+QLabel:disabled {
+    color: #d3d3d3; /* Light grey for disabled state */
+    border: 1px solid #a9a9a9; /* Dark grey border for disabled state */
+    background-color: transparent; /* Transparent background for disabled state */
+}
+</string>
+              </property>
+              <property name="text">
+               <string>Nom                            :</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_prenom_12">
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+    color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 1px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    padding: 6px; /* Adjust padding as needed */
+    border-radius: 4px;
+    background-color: #2a2a69; /* Darker shade of blue for background */
+}
+
+/* Hover effect */
+QLabel:hover {
+    background-color: #1a1a49; /* Dark blue on hover */
+}
+
+/* Disabled state */
+QLabel:disabled {
+    color: #d3d3d3; /* Light grey for disabled state */
+    border: 1px solid #a9a9a9; /* Dark grey border for disabled state */
+    background-color: transparent; /* Transparent background for disabled state */
+}
+</string>
+              </property>
+              <property name="text">
+               <string>Date livraison              :</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_prenom_10">
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+    color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 1px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    padding: 6px; /* Adjust padding as needed */
+    border-radius: 4px;
+    background-color: #2a2a69; /* Darker shade of blue for background */
+}
+
+/* Hover effect */
+QLabel:hover {
+    background-color: #1a1a49; /* Dark blue on hover */
+}
+
+/* Disabled state */
+QLabel:disabled {
+    color: #d3d3d3; /* Light grey for disabled state */
+    border: 1px solid #a9a9a9; /* Dark grey border for disabled state */
+    background-color: transparent; /* Transparent background for disabled state */
+}
+</string>
+              </property>
+              <property name="text">
+               <string>Adresse livraison              :</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_prenom_11">
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+    color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 1px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    padding: 6px; /* Adjust padding as needed */
+    border-radius: 4px;
+    background-color: #2a2a69; /* Darker shade of blue for background */
+}
+
+/* Hover effect */
+QLabel:hover {
+    background-color: #1a1a49; /* Dark blue on hover */
+}
+
+/* Disabled state */
+QLabel:disabled {
+    color: #d3d3d3; /* Light grey for disabled state */
+    border: 1px solid #a9a9a9; /* Dark grey border for disabled state */
+    background-color: transparent; /* Transparent background for disabled state */
+}
+</string>
+              </property>
+              <property name="text">
+               <string>statut                     :</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_addresse_5">
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+    color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 1px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    padding: 6px; /* Adjust padding as needed */
+    border-radius: 4px;
+    background-color: #2a2a69; /* Darker shade of blue for background */
+}
+
+/* Hover effect */
+QLabel:hover {
+    background-color: #1a1a49; /* Dark blue on hover */
+}
+
+/* Disabled state */
+QLabel:disabled {
+    color: #d3d3d3; /* Light grey for disabled state */
+    border: 1px solid #a9a9a9; /* Dark grey border for disabled state */
+    background-color: transparent; /* Transparent background for disabled state */
+}
+</string>
+              </property>
+              <property name="text">
+               <string>référence                        :</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_6">
+            <item>
+             <widget class="QLineEdit" name="nomcom">
+              <property name="styleSheet">
+               <string notr="true">QLineEdit {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Placeholder text color */
+QLineEdit::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Border and background color on focus */
+QLineEdit:focus {
+    border: 2px solid #abdbe3; /* Change color on focus */
+    background-color: #2a2a69; /* Change background color on focus */
+}
+</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QDateEdit" name="dateEdit"/>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="adresse_liv">
+              <property name="styleSheet">
+               <string notr="true">QLineEdit {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Placeholder text color */
+QLineEdit::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Border and background color on focus */
+QLineEdit:focus {
+    border: 2px solid #abdbe3; /* Change color on focus */
+    background-color: #2a2a69; /* Change background color on focus */
+}
+</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="statut">
+              <item>
+               <property name="text">
+                <string>En cours</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Annulée</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>En attente</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Livrée</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="reference">
+              <property name="styleSheet">
+               <string notr="true">QLineEdit {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Placeholder text color */
+QLineEdit::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Border and background color on focus */
+QLineEdit:focus {
+    border: 2px solid #abdbe3; /* Change color on focus */
+    background-color: #2a2a69; /* Change background color on focus */
+}
+</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="layoutWidget_10">
+         <property name="geometry">
+          <rect>
+           <x>370</x>
+           <y>440</y>
+           <width>221</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_10">
+          <item>
+           <widget class="QPushButton" name="modifier_6">
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px 12px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background-color: #add8e6; /* Lighter shade of blue on hover */
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #5F9EA0; /* Darker shade of blue on press */
+}
+
+/* Disabled state */
+QPushButton:disabled {
+    background-color: #d3d3d3; /* Light grey for disabled state */
+    border: 2px solid #a9a9a9; /* Dark grey border for disabled state */
+    color: #696969; /* Dark grey text for disabled state */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>modfier</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="ajouter_3">
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px 12px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background-color: #add8e6; /* Lighter shade of blue on hover */
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #5F9EA0; /* Darker shade of blue on press */
+}
+
+/* Disabled state */
+QPushButton:disabled {
+    background-color: #d3d3d3; /* Light grey for disabled state */
+    border: 2px solid #a9a9a9; /* Dark grey border for disabled state */
+    color: #696969; /* Dark grey text for disabled state */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>Ajouter</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QLineEdit" name="id_comm_mod">
+         <property name="geometry">
+          <rect>
+           <x>60</x>
+           <y>520</y>
+           <width>20</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">width: 0px; height: 0px; border: none;</string>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="Afficher_3">
+       <attribute name="title">
+        <string>Afficher</string>
+       </attribute>
+       <widget class="QGroupBox" name="groupBox_10">
+        <property name="geometry">
+         <rect>
+          <x>-20</x>
+          <y>-20</y>
+          <width>991</width>
+          <height>881</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QGroupBox {
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    border-radius: 4px;
+    margin-top: 10px; /* Adjust margin as needed */
+    background-color: #2a2a69; /* Darker shade of blue for background */
+}
+
+/* Title color */
+QGroupBox::title {
+    subcontrol-origin: margin;
+    padding: 0 3px;
+    color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+}
+
+/* Hover effect */
+QGroupBox:hover {
+    border: 2px solid #abdbe3; /* Change border color on hover */
+}
+
+/* Disabled state */
+QGroupBox:disabled {
+    border: 2px solid #a9a9a9; /* Dark grey border for disabled state */
+}
+
+/* Disabled title color */
+QGroupBox:disabled::title {
+    color: #d3d3d3; /* Light grey for disabled title */
+}
+</string>
+        </property>
+        <property name="title">
+         <string>Afficher</string>
+        </property>
+        <widget class="QTableView" name="table_commandes">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>170</y>
+           <width>631</width>
+           <height>301</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QTableView {
+    background-color: #2a2a69; /* Darker shade of blue for background */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    gridline-color: #1a1a49; /* Dark blue gridlines */
+}
+
+/* Header section */
+QHeaderView::section {
+    background-color: #2a2a69; /* Darker shade of blue for header background */
+    color: #87CEEB; /* Light blue text for header */
+    padding: 4px;
+    border: 1px solid #1a1a49; /* Dark blue border for header sections */
+}
+
+/* Hover effect on header section */
+QHeaderView::section:hover {
+    background-color: #1a1a49; /* Dark blue on hover */
+}
+
+/* Selected item background color */
+QTableView::item:selected {
+    background-color: #1a1a49; /* Dark blue for selected item */
+}
+
+/* Alternate row background color */
+QTableView::item:alternate {
+    background-color: #2a2a69; /* Darker shade of blue for alternate rows */
+}
+
+/* Horizontal scrollbar */
+QScrollBar:horizontal {
+    background-color: #2a2a69; /* Darker shade of blue for scrollbar background */
+    border: 2px solid #1a1a49; /* Dark blue border for scrollbar */
+    height: 15px;
+    margin: 0px 20px 0 20px;
+}
+
+/* Vertical scrollbar */
+QScrollBar:vertical {
+    background-color: #2a2a69; /* Darker shade of blue for scrollbar background */
+    border: 2px solid #1a1a49; /* Dark blue border for scrollbar */
+    width: 15px;
+    margin: 20px 0 20px 0;
+}
+
+/* Handle on scrollbar */
+QScrollBar::handle {
+    background-color: #87CEEB; /* Light blue for scrollbar handle */
+    border-radius: 8px; /* Adjust border radius as needed */
+}
+
+/* Handle on scrollbar when pressed */
+QScrollBar::handle:pressed {
+    background-color: #5F9EA0; /* Darker shade of blue when handle is pressed */
+}
+</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="lineEdit_2">
+         <property name="geometry">
+          <rect>
+           <x>580</x>
+           <y>110</y>
+           <width>321</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="placeholderText">
+          <string>Chercher ..</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_2">
+         <property name="geometry">
+          <rect>
+           <x>280</x>
+           <y>50</y>
+           <width>401</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font: 75 18pt &quot;MS Shell Dlg 2&quot;;
+color :  rgb(255, 255, 255)  ;</string>
+         </property>
+         <property name="text">
+          <string>Listes des commandes</string>
+         </property>
+        </widget>
+        <widget class="QTabWidget" name="tabWidget_3">
+         <property name="geometry">
+          <rect>
+           <x>60</x>
+           <y>480</y>
+           <width>901</width>
+           <height>191</height>
+          </rect>
+         </property>
+         <property name="currentIndex">
+          <number>1</number>
+         </property>
+         <widget class="QWidget" name="tab_4">
+          <attribute name="title">
+           <string>Option</string>
+          </attribute>
+          <widget class="QPushButton" name="supprimer_13">
+           <property name="geometry">
+            <rect>
+             <x>600</x>
+             <y>50</y>
+             <width>112</width>
+             <height>32</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px 12px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background-color: #add8e6; /* Lighter shade of blue on hover */
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #5F9EA0; /* Darker shade of blue on press */
+}
+
+/* Disabled state */
+QPushButton:disabled {
+    background-color: #d3d3d3; /* Light grey for disabled state */
+    border: 2px solid #a9a9a9; /* Dark grey border for disabled state */
+    color: #696969; /* Dark grey text for disabled state */
+}
+</string>
+           </property>
+           <property name="text">
+            <string>Stat</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="supprimer_9">
+           <property name="geometry">
+            <rect>
+             <x>40</x>
+             <y>50</y>
+             <width>112</width>
+             <height>32</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px 12px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background-color: #add8e6; /* Lighter shade of blue on hover */
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #5F9EA0; /* Darker shade of blue on press */
+}
+
+/* Disabled state */
+QPushButton:disabled {
+    background-color: #d3d3d3; /* Light grey for disabled state */
+    border: 2px solid #a9a9a9; /* Dark grey border for disabled state */
+    color: #696969; /* Dark grey text for disabled state */
+}
+</string>
+           </property>
+           <property name="text">
+            <string>Trie id</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="supprimer_11">
+           <property name="geometry">
+            <rect>
+             <x>320</x>
+             <y>50</y>
+             <width>112</width>
+             <height>32</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px 12px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background-color: #add8e6; /* Lighter shade of blue on hover */
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #5F9EA0; /* Darker shade of blue on press */
+}
+
+/* Disabled state */
+QPushButton:disabled {
+    background-color: #d3d3d3; /* Light grey for disabled state */
+    border: 2px solid #a9a9a9; /* Dark grey border for disabled state */
+    color: #696969; /* Dark grey text for disabled state */
+}
+</string>
+           </property>
+           <property name="text">
+            <string>Trie statut</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="supprimer_10">
+           <property name="geometry">
+            <rect>
+             <x>180</x>
+             <y>50</y>
+             <width>112</width>
+             <height>32</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px 12px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background-color: #add8e6; /* Lighter shade of blue on hover */
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #5F9EA0; /* Darker shade of blue on press */
+}
+
+/* Disabled state */
+QPushButton:disabled {
+    background-color: #d3d3d3; /* Light grey for disabled state */
+    border: 2px solid #a9a9a9; /* Dark grey border for disabled state */
+    color: #696969; /* Dark grey text for disabled state */
+}
+</string>
+           </property>
+           <property name="text">
+            <string>Trie nom</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="supprimer_12">
+           <property name="geometry">
+            <rect>
+             <x>460</x>
+             <y>50</y>
+             <width>112</width>
+             <height>32</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px 12px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background-color: #add8e6; /* Lighter shade of blue on hover */
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #5F9EA0; /* Darker shade of blue on press */
+}
+
+/* Disabled state */
+QPushButton:disabled {
+    background-color: #d3d3d3; /* Light grey for disabled state */
+    border: 2px solid #a9a9a9; /* Dark grey border for disabled state */
+    color: #696969; /* Dark grey text for disabled state */
+}
+</string>
+           </property>
+           <property name="text">
+            <string>PDF</string>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="tab_5">
+          <attribute name="title">
+           <string>Suprimer</string>
+          </attribute>
+          <widget class="QPushButton" name="supprimer_15">
+           <property name="geometry">
+            <rect>
+             <x>530</x>
+             <y>50</y>
+             <width>112</width>
+             <height>32</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px 12px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background-color: #add8e6; /* Lighter shade of blue on hover */
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #5F9EA0; /* Darker shade of blue on press */
+}
+
+/* Disabled state */
+QPushButton:disabled {
+    background-color: #d3d3d3; /* Light grey for disabled state */
+    border: 2px solid #a9a9a9; /* Dark grey border for disabled state */
+    color: #696969; /* Dark grey text for disabled state */
+}
+</string>
+           </property>
+           <property name="text">
+            <string>Supprimer</string>
+           </property>
+          </widget>
+          <widget class="QLineEdit" name="id_commande_3">
+           <property name="geometry">
+            <rect>
+             <x>290</x>
+             <y>50</y>
+             <width>204</width>
+             <height>34</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLineEdit {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Placeholder text color */
+QLineEdit::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Border and background color on focus */
+QLineEdit:focus {
+    border: 2px solid #abdbe3; /* Change color on focus */
+    background-color: #2a2a69; /* Change background color on focus */
+}
+</string>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="tab_6">
+          <attribute name="title">
+           <string>Qr code</string>
+          </attribute>
+          <widget class="QPushButton" name="supprimer_14">
+           <property name="geometry">
+            <rect>
+             <x>210</x>
+             <y>50</y>
+             <width>112</width>
+             <height>32</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px 12px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background-color: #add8e6; /* Lighter shade of blue on hover */
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #5F9EA0; /* Darker shade of blue on press */
+}
+
+/* Disabled state */
+QPushButton:disabled {
+    background-color: #d3d3d3; /* Light grey for disabled state */
+    border: 2px solid #a9a9a9; /* Dark grey border for disabled state */
+    color: #696969; /* Dark grey text for disabled state */
+}
+</string>
+           </property>
+           <property name="text">
+            <string>QR code</string>
+           </property>
+          </widget>
+         </widget>
+        </widget>
+        <widget class="QPushButton" name="commandes_du_jour">
+         <property name="geometry">
+          <rect>
+           <x>760</x>
+           <y>210</y>
+           <width>171</width>
+           <height>28</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>commande du jour</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="toutes_les_commandes">
+         <property name="geometry">
+          <rect>
+           <x>760</x>
+           <y>320</y>
+           <width>171</width>
+           <height>28</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>toutes les commandes</string>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_10">
+     <attribute name="title">
+      <string>gestion client</string>
+     </attribute>
+     <widget class="QTabWidget" name="modifier_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1021</width>
+        <height>941</height>
+       </rect>
+      </property>
+      <property name="contextMenuPolicy">
+       <enum>Qt::PreventContextMenu</enum>
+      </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="accessibleDescription">
+       <string/>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QTabWidget {
+    background-color: #f0f0f0;
+}
+
+/* Set rounded corners for the tab bar */
+QTabBar {
+    border-radius: 5px;
+    border: 1px solid black; /* Add a 1px black border */
+}
+
+/* Increase spacing between tabs */
+QTabBar::tab {
+    margin-left: 0px; /* Adjust spacing as needed */
+    margin-right: 0px; /* Adjust spacing as needed */
+}
+
+/* Increase tab size and add horizontal padding */
+QTabBar::tab {
+    min-width: 70px; /* Adjust width as needed */
+    min-height: 30px; /* Adjust height as needed */
+    padding: 0px 10px; /* Add 5px padding on top/bottom, 10px on left/right */
+}
+
+/* Set background color and text color for individual tabs */
+QTabBar::tab {
+    background-color: #193b68;
+    color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: 1px solid black; /* Add a 1px black border for each tab */
+}
+
+/* Change background and text color for selected tab */
+QTabBar::tab:selected {
+    background-color: #abdbe3;
+    color: white;
+}
+</string>
+      </property>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="Ajouter_2">
+       <property name="accessibleName">
+        <string/>
+       </property>
+       <attribute name="title">
+        <string>Ajouter et modifier</string>
+       </attribute>
+       <widget class="QGroupBox" name="groupBox_Ajouter_2">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>-20</y>
+          <width>1021</width>
+          <height>611</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QGroupBox {
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    border-radius: 4px;
+    margin-top: 10px; /* Adjust margin as needed */
+    background-color: #2a2a69; /* Darker shade of blue for background */
+}
+
+/* Title color */
+QGroupBox::title {
+    subcontrol-origin: margin;
+    padding: 0 3px;
+    color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+}
+
+/* Hover effect */
+QGroupBox:hover {
+    border: 2px solid #abdbe3; /* Change border color on hover */
+}
+
+/* Disabled state */
+QGroupBox:disabled {
+    border: 2px solid #a9a9a9; /* Dark grey border for disabled state */
+}
+
+/* Disabled title color */
+QGroupBox:disabled::title {
+    color: #d3d3d3; /* Light grey for disabled title */
+}
+</string>
+        </property>
+        <property name="title">
+         <string>Ajouter un employé</string>
+        </property>
+        <widget class="QWidget" name="layoutWidget_5">
+         <property name="geometry">
+          <rect>
+           <x>140</x>
+           <y>110</y>
+           <width>651</width>
+           <height>251</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <widget class="QLabel" name="label_prenom_7">
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+    color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 1px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    padding: 6px; /* Adjust padding as needed */
+    border-radius: 4px;
+    background-color: #2a2a69; /* Darker shade of blue for background */
+}
+
+/* Hover effect */
+QLabel:hover {
+    background-color: #1a1a49; /* Dark blue on hover */
+}
+
+/* Disabled state */
+QLabel:disabled {
+    color: #d3d3d3; /* Light grey for disabled state */
+    border: 1px solid #a9a9a9; /* Dark grey border for disabled state */
+    background-color: transparent; /* Transparent background for disabled state */
+}
+</string>
+              </property>
+              <property name="text">
+               <string>Nom                            :</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_prenom_8">
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+    color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 1px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    padding: 6px; /* Adjust padding as needed */
+    border-radius: 4px;
+    background-color: #2a2a69; /* Darker shade of blue for background */
+}
+
+/* Hover effect */
+QLabel:hover {
+    background-color: #1a1a49; /* Dark blue on hover */
+}
+
+/* Disabled state */
+QLabel:disabled {
+    color: #d3d3d3; /* Light grey for disabled state */
+    border: 1px solid #a9a9a9; /* Dark grey border for disabled state */
+    background-color: transparent; /* Transparent background for disabled state */
+}
+</string>
+              </property>
+              <property name="text">
+               <string>prenom                 :</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_addresse_4">
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+    color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 1px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    padding: 6px; /* Adjust padding as needed */
+    border-radius: 4px;
+    background-color: #2a2a69; /* Darker shade of blue for background */
+}
+
+/* Hover effect */
+QLabel:hover {
+    background-color: #1a1a49; /* Dark blue on hover */
+}
+
+/* Disabled state */
+QLabel:disabled {
+    color: #d3d3d3; /* Light grey for disabled state */
+    border: 1px solid #a9a9a9; /* Dark grey border for disabled state */
+    background-color: transparent; /* Transparent background for disabled state */
+}
+</string>
+              </property>
+              <property name="text">
+               <string>adresse                           :</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_telephone_6">
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+    color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 1px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    padding: 6px; /* Adjust padding as needed */
+    border-radius: 4px;
+    background-color: #2a2a69; /* Darker shade of blue for background */
+}
+
+/* Hover effect */
+QLabel:hover {
+    background-color: #1a1a49; /* Dark blue on hover */
+}
+
+/* Disabled state */
+QLabel:disabled {
+    color: #d3d3d3; /* Light grey for disabled state */
+    border: 1px solid #a9a9a9; /* Dark grey border for disabled state */
+    background-color: transparent; /* Transparent background for disabled state */
+}
+</string>
+              </property>
+              <property name="text">
+               <string>num_tel                :</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_role_7">
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+    color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 1px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    padding: 6px; /* Adjust padding as needed */
+    border-radius: 4px;
+    background-color: #2a2a69; /* Darker shade of blue for background */
+}
+
+/* Hover effect */
+QLabel:hover {
+    background-color: #1a1a49; /* Dark blue on hover */
+}
+
+/* Disabled state */
+QLabel:disabled {
+    color: #d3d3d3; /* Light grey for disabled state */
+    border: 1px solid #a9a9a9; /* Dark grey border for disabled state */
+    background-color: transparent; /* Transparent background for disabled state */
+}
+</string>
+              </property>
+              <property name="text">
+               <string>email:</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <item>
+             <widget class="QLineEdit" name="nom_client">
+              <property name="styleSheet">
+               <string notr="true">QLineEdit {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Placeholder text color */
+QLineEdit::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Border and background color on focus */
+QLineEdit:focus {
+    border: 2px solid #abdbe3; /* Change color on focus */
+    background-color: #2a2a69; /* Change background color on focus */
+}
+</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="prenom_client">
+              <property name="styleSheet">
+               <string notr="true">QLineEdit {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Placeholder text color */
+QLineEdit::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Border and background color on focus */
+QLineEdit:focus {
+    border: 2px solid #abdbe3; /* Change color on focus */
+    background-color: #2a2a69; /* Change background color on focus */
+}
+</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="adresse_client">
+              <property name="styleSheet">
+               <string notr="true">QLineEdit {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Placeholder text color */
+QLineEdit::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Border and background color on focus */
+QLineEdit:focus {
+    border: 2px solid #abdbe3; /* Change color on focus */
+    background-color: #2a2a69; /* Change background color on focus */
+}
+</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="num_tel_client">
+              <property name="styleSheet">
+               <string notr="true">QLineEdit {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Placeholder text color */
+QLineEdit::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Border and background color on focus */
+QLineEdit:focus {
+    border: 2px solid #abdbe3; /* Change color on focus */
+    background-color: #2a2a69; /* Change background color on focus */
+}
+</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="email_client">
+              <property name="styleSheet">
+               <string notr="true">QLineEdit {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Placeholder text color */
+QLineEdit::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Border and background color on focus */
+QLineEdit:focus {
+    border: 2px solid #abdbe3; /* Change color on focus */
+    background-color: #2a2a69; /* Change background color on focus */
+}
+</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="layoutWidget_6">
+         <property name="geometry">
+          <rect>
+           <x>350</x>
+           <y>390</y>
+           <width>281</width>
+           <height>61</height>
+          </rect>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item>
+           <widget class="QPushButton" name="modifier_4">
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px 12px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background-color: #add8e6; /* Lighter shade of blue on hover */
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #5F9EA0; /* Darker shade of blue on press */
+}
+
+/* Disabled state */
+QPushButton:disabled {
+    background-color: #d3d3d3; /* Light grey for disabled state */
+    border: 2px solid #a9a9a9; /* Dark grey border for disabled state */
+    color: #696969; /* Dark grey text for disabled state */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>modfier</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="ajouter_2">
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px 12px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background-color: #add8e6; /* Lighter shade of blue on hover */
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #5F9EA0; /* Darker shade of blue on press */
+}
+
+/* Disabled state */
+QPushButton:disabled {
+    background-color: #d3d3d3; /* Light grey for disabled state */
+    border: 2px solid #a9a9a9; /* Dark grey border for disabled state */
+    color: #696969; /* Dark grey text for disabled state */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>Ajouter</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QLineEdit" name="id_client_mod">
+         <property name="geometry">
+          <rect>
+           <x>80</x>
+           <y>520</y>
+           <width>20</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">width: 0px; height: 0px; border: none;</string>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="Afficher_2">
+       <attribute name="title">
+        <string>Afficher</string>
+       </attribute>
+       <widget class="QGroupBox" name="groupBox_9">
+        <property name="geometry">
+         <rect>
+          <x>-10</x>
+          <y>-20</y>
+          <width>991</width>
+          <height>881</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QGroupBox {
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    border-radius: 4px;
+    margin-top: 10px; /* Adjust margin as needed */
+    background-color: #2a2a69; /* Darker shade of blue for background */
+}
+
+/* Title color */
+QGroupBox::title {
+    subcontrol-origin: margin;
+    padding: 0 3px;
+    color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+}
+
+/* Hover effect */
+QGroupBox:hover {
+    border: 2px solid #abdbe3; /* Change border color on hover */
+}
+
+/* Disabled state */
+QGroupBox:disabled {
+    border: 2px solid #a9a9a9; /* Dark grey border for disabled state */
+}
+
+/* Disabled title color */
+QGroupBox:disabled::title {
+    color: #d3d3d3; /* Light grey for disabled title */
+}
+</string>
+        </property>
+        <property name="title">
+         <string>Afficher</string>
+        </property>
+        <widget class="QTableView" name="table_clients">
+         <property name="geometry">
+          <rect>
+           <x>60</x>
+           <y>170</y>
+           <width>841</width>
+           <height>301</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QTableView {
+    background-color: #2a2a69; /* Darker shade of blue for background */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    gridline-color: #1a1a49; /* Dark blue gridlines */
+}
+
+/* Header section */
+QHeaderView::section {
+    background-color: #2a2a69; /* Darker shade of blue for header background */
+    color: #87CEEB; /* Light blue text for header */
+    padding: 4px;
+    border: 1px solid #1a1a49; /* Dark blue border for header sections */
+}
+
+/* Hover effect on header section */
+QHeaderView::section:hover {
+    background-color: #1a1a49; /* Dark blue on hover */
+}
+
+/* Selected item background color */
+QTableView::item:selected {
+    background-color: #1a1a49; /* Dark blue for selected item */
+}
+
+/* Alternate row background color */
+QTableView::item:alternate {
+    background-color: #2a2a69; /* Darker shade of blue for alternate rows */
+}
+
+/* Horizontal scrollbar */
+QScrollBar:horizontal {
+    background-color: #2a2a69; /* Darker shade of blue for scrollbar background */
+    border: 2px solid #1a1a49; /* Dark blue border for scrollbar */
+    height: 15px;
+    margin: 0px 20px 0 20px;
+}
+
+/* Vertical scrollbar */
+QScrollBar:vertical {
+    background-color: #2a2a69; /* Darker shade of blue for scrollbar background */
+    border: 2px solid #1a1a49; /* Dark blue border for scrollbar */
+    width: 15px;
+    margin: 20px 0 20px 0;
+}
+
+/* Handle on scrollbar */
+QScrollBar::handle {
+    background-color: #87CEEB; /* Light blue for scrollbar handle */
+    border-radius: 8px; /* Adjust border radius as needed */
+}
+
+/* Handle on scrollbar when pressed */
+QScrollBar::handle:pressed {
+    background-color: #5F9EA0; /* Darker shade of blue when handle is pressed */
+}
+</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="lineEdit">
+         <property name="geometry">
+          <rect>
+           <x>580</x>
+           <y>120</y>
+           <width>321</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="placeholderText">
+          <string>Chercher ..</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label">
+         <property name="geometry">
+          <rect>
+           <x>330</x>
+           <y>55</y>
+           <width>401</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font: 75 18pt &quot;MS Shell Dlg 2&quot;;
+color :  rgb(255, 255, 255)  ;</string>
+         </property>
+         <property name="text">
+          <string>Listes des clients</string>
+         </property>
+        </widget>
+        <widget class="QTabWidget" name="tabWidget_2">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>490</y>
+           <width>871</width>
+           <height>161</height>
+          </rect>
+         </property>
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+         <widget class="QWidget" name="tab_2">
+          <attribute name="title">
+           <string>Options</string>
+          </attribute>
+          <widget class="QPushButton" name="supprimer_7">
+           <property name="geometry">
+            <rect>
+             <x>500</x>
+             <y>50</y>
+             <width>112</width>
+             <height>32</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px 12px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background-color: #add8e6; /* Lighter shade of blue on hover */
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #5F9EA0; /* Darker shade of blue on press */
+}
+
+/* Disabled state */
+QPushButton:disabled {
+    background-color: #d3d3d3; /* Light grey for disabled state */
+    border: 2px solid #a9a9a9; /* Dark grey border for disabled state */
+    color: #696969; /* Dark grey text for disabled state */
+}
+</string>
+           </property>
+           <property name="text">
+            <string>Stat</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="supprimer_5">
+           <property name="geometry">
+            <rect>
+             <x>240</x>
+             <y>50</y>
+             <width>112</width>
+             <height>32</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px 12px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background-color: #add8e6; /* Lighter shade of blue on hover */
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #5F9EA0; /* Darker shade of blue on press */
+}
+
+/* Disabled state */
+QPushButton:disabled {
+    background-color: #d3d3d3; /* Light grey for disabled state */
+    border: 2px solid #a9a9a9; /* Dark grey border for disabled state */
+    color: #696969; /* Dark grey text for disabled state */
+}
+</string>
+           </property>
+           <property name="text">
+            <string>Trie prenom</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="supprimer_4">
+           <property name="geometry">
+            <rect>
+             <x>120</x>
+             <y>50</y>
+             <width>112</width>
+             <height>32</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px 12px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background-color: #add8e6; /* Lighter shade of blue on hover */
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #5F9EA0; /* Darker shade of blue on press */
+}
+
+/* Disabled state */
+QPushButton:disabled {
+    background-color: #d3d3d3; /* Light grey for disabled state */
+    border: 2px solid #a9a9a9; /* Dark grey border for disabled state */
+    color: #696969; /* Dark grey text for disabled state */
+}
+</string>
+           </property>
+           <property name="text">
+            <string>Trie nom</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="supprimer_3">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>50</y>
+             <width>112</width>
+             <height>32</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px 12px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background-color: #add8e6; /* Lighter shade of blue on hover */
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #5F9EA0; /* Darker shade of blue on press */
+}
+
+/* Disabled state */
+QPushButton:disabled {
+    background-color: #d3d3d3; /* Light grey for disabled state */
+    border: 2px solid #a9a9a9; /* Dark grey border for disabled state */
+    color: #696969; /* Dark grey text for disabled state */
+}
+</string>
+           </property>
+           <property name="text">
+            <string>Trie id</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="supprimer_6">
+           <property name="geometry">
+            <rect>
+             <x>370</x>
+             <y>50</y>
+             <width>112</width>
+             <height>32</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px 12px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background-color: #add8e6; /* Lighter shade of blue on hover */
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #5F9EA0; /* Darker shade of blue on press */
+}
+
+/* Disabled state */
+QPushButton:disabled {
+    background-color: #d3d3d3; /* Light grey for disabled state */
+    border: 2px solid #a9a9a9; /* Dark grey border for disabled state */
+    color: #696969; /* Dark grey text for disabled state */
+}
+</string>
+           </property>
+           <property name="text">
+            <string>PDF</string>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="tab_3">
+          <attribute name="title">
+           <string>Supprimer</string>
+          </attribute>
+          <widget class="QPushButton" name="supprimer_2">
+           <property name="geometry">
+            <rect>
+             <x>530</x>
+             <y>51</y>
+             <width>112</width>
+             <height>32</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px 12px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background-color: #add8e6; /* Lighter shade of blue on hover */
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #5F9EA0; /* Darker shade of blue on press */
+}
+
+/* Disabled state */
+QPushButton:disabled {
+    background-color: #d3d3d3; /* Light grey for disabled state */
+    border: 2px solid #a9a9a9; /* Dark grey border for disabled state */
+    color: #696969; /* Dark grey text for disabled state */
+}
+</string>
+           </property>
+           <property name="text">
+            <string>Supprimer</string>
+           </property>
+          </widget>
+          <widget class="QLineEdit" name="id_client_2">
+           <property name="geometry">
+            <rect>
+             <x>280</x>
+             <y>50</y>
+             <width>213</width>
+             <height>34</height>
+            </rect>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLineEdit {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Placeholder text color */
+QLineEdit::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Border and background color on focus */
+QLineEdit:focus {
+    border: 2px solid #abdbe3; /* Change color on focus */
+    background-color: #2a2a69; /* Change background color on focus */
+}
+</string>
+           </property>
+          </widget>
+         </widget>
+        </widget>
+       </widget>
+      </widget>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

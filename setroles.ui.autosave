@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SetRoles</class>
+ <widget class="QDialog" name="SetRoles">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>962</width>
+    <height>634</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QPushButton" name="btn_livreur">
+   <property name="geometry">
+    <rect>
+     <x>630</x>
+     <y>280</y>
+     <width>231</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px 12px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background-color: #add8e6; /* Lighter shade of blue on hover */
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #5F9EA0; /* Darker shade of blue on press */
+}
+
+/* Disabled state */
+QPushButton:disabled {
+    background-color: #d3d3d3; /* Light grey for disabled state */
+    border: 2px solid #a9a9a9; /* Dark grey border for disabled state */
+    color: #696969; /* Dark grey text for disabled state */
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Livreur</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_logistique">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>280</y>
+     <width>231</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px 12px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background-color: #add8e6; /* Lighter shade of blue on hover */
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #5F9EA0; /* Darker shade of blue on press */
+}
+
+/* Disabled state */
+QPushButton:disabled {
+    background-color: #d3d3d3; /* Light grey for disabled state */
+    border: 2px solid #a9a9a9; /* Dark grey border for disabled state */
+    color: #696969; /* Dark grey text for disabled state */
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Gestionnaire Logistique</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_admin">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>280</y>
+     <width>231</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px 12px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background-color: #add8e6; /* Lighter shade of blue on hover */
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #5F9EA0; /* Darker shade of blue on press */
+}
+
+/* Disabled state */
+QPushButton:disabled {
+    background-color: #d3d3d3; /* Light grey for disabled state */
+    border: 2px solid #a9a9a9; /* Dark grey border for disabled state */
+    color: #696969; /* Dark grey text for disabled state */
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Administrateur</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

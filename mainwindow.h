@@ -20,6 +20,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+        void setRole(QString role);
 
 private slots:
     void on_modifier_4_clicked();
@@ -68,8 +69,11 @@ private slots:
     void on_commandes_du_jour_clicked();
 
     void on_toutes_les_commandes_clicked();
-
-
+    void on_btn_retour_roles_clicked();
+    void chargerDonneesCommande(int id);
+    void on_id_comm_mod_textChanged(const QString &arg1);
+    void on_id_client_mod_textChanged(const QString &arg1);
+    void chargerDonneesClient(int id);
 private:
     Ui::MainWindow *ui;
     commande cmd;

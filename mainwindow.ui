@@ -130,7 +130,7 @@ QTabBar::tab:selected {
 </string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="Ajouter_3">
        <property name="accessibleName">
@@ -405,7 +405,7 @@ QLineEdit:focus {
               </item>
               <item>
                <property name="text">
-                <string>Annulée</string>
+                <string>Annulee</string>
                </property>
               </item>
               <item>
@@ -415,7 +415,7 @@ QLineEdit:focus {
               </item>
               <item>
                <property name="text">
-                <string>Livrée</string>
+                <string>Livree</string>
                </property>
               </item>
              </widget>
@@ -540,6 +540,46 @@ QPushButton:disabled {
          </property>
          <property name="styleSheet">
           <string notr="true">width: 0px; height: 0px; border: none;</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="btn_retour_roles">
+         <property name="geometry">
+          <rect>
+           <x>100</x>
+           <y>510</y>
+           <width>107</width>
+           <height>32</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background-color: #87CEEB; /* Light blue: R: 135, G: 206, B: 235 */
+    border: 2px solid rgb(80, 80, 80); /* Dark grey: R: 80, G: 80, B: 80 */
+    color: rgb(255, 255, 0);
+    padding: 6px 12px; /* Adjust padding as needed */
+    border-radius: 4px;
+}
+
+/* Hover effect */
+QPushButton:hover {
+    background-color: #add8e6; /* Lighter shade of blue on hover */
+}
+
+/* Pressed effect */
+QPushButton:pressed {
+    background-color: #5F9EA0; /* Darker shade of blue on press */
+}
+
+/* Disabled state */
+QPushButton:disabled {
+    background-color: #d3d3d3; /* Light grey for disabled state */
+    border: 2px solid #a9a9a9; /* Dark grey border for disabled state */
+    color: #696969; /* Dark grey text for disabled state */
+}
+</string>
+         </property>
+         <property name="text">
+          <string>Retour</string>
          </property>
         </widget>
        </widget>
@@ -1122,7 +1162,7 @@ QTabBar::tab:selected {
 </string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="Ajouter_2">
        <property name="accessibleName">

@@ -1,13 +1,20 @@
-#include "mainwindow.h"
+#include "setroles.h"
 #include <QApplication>
 #include <QMessageBox>
 #include "connection.h"
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
     Connection c;
-    c.createconnect();
-    MainWindow w;
-    w.show();
+    if (!c.createconnect()) {
+        QMessageBox::critical(nullptr, "Erreur", "Connexion à la base de données échouée.");
+        return -1;
+    }
+
+    SetRoles r;
+    r.show();
+
     return a.exec();
 }

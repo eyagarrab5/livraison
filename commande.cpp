@@ -34,7 +34,9 @@ QString commande::get_statut() { return statut; }
 
 bool commande::ajouter()
 {
-    QStringList statutValide = {"En attente", "En cours", "Livrée", "Annulée"};
+    statut = statut.trimmed().simplified();
+
+    QStringList statutValide = {"En attente", "En cours", "Livree", "Annulee"};
     if (!statutValide.contains(statut)) {
         qDebug() << "Statut invalide:" << statut;
         return false;
@@ -53,25 +55,24 @@ bool commande::ajouter()
     return query.exec();
 }
 
-bool commande::modifier(int idd, QString nom, QString ref, QString date, QString adresse, QString statut)
-{
-    QStringList statutValide = {"En attente", "En cours", "Livrée", "Annulée"};
-    if (!statutValide.contains(statut)) {
-        qDebug() << "Statut invalide:" << statut;
-        return false;
-    }
 
+bool commande::modifier(int id, QString nom, QString reference, QString date, QString adresse, QString statut)
+{
     QSqlQuery query;
-    query.prepare("UPDATE COMMANDE SET NOM_COMMANDE = :nom, REFERENCE = :ref, "
-                  "DATE_COMMANDE = TO_DATE(:date, 'YYYY-MM-DD'), ADRESSE_LIVRAISON = :adresse, STATUT = :statut "
+    query.prepare("UPDATE COMMANDE SET "
+                  "NOM_COMMANDE = :nom, "
+                  "REFERENCE = :reference, "
+                  "DATE_COMMANDE = TO_DATE(:date, 'YYYY-MM-DD'), " // Utiliser TO_DATE
+                  "ADRESSE_LIVRAISON = :adresse, "
+                  "STATUT = :statut "
                   "WHERE ID_COMMANDE = :id");
 
-    query.bindValue(":id", idd);
     query.bindValue(":nom", nom);
-    query.bindValue(":ref", ref);
+    query.bindValue(":reference", reference);
     query.bindValue(":date", date);
     query.bindValue(":adresse", adresse);
     query.bindValue(":statut", statut);
+    query.bindValue(":id", id);
 
     return query.exec();
 }

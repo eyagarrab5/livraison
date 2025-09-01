@@ -43,18 +43,26 @@ bool client::ajouter() {
     return query.exec();
 }
 
-bool client::modifier(int id, QString nom, QString prenom, QString adresse, QString telephone, QString email) {
+bool client::modifier(int id, QString nom, QString prenom, QString adresse, QString telephone, QString email)
+{
     QSqlQuery query;
-    query.prepare("UPDATE CLIENT SET NOM = ?, PRENOM = ?, ADRESSE = ?, TELEPHONE = ?, EMAIL = ? WHERE ID_CLIENT = ?");
-    query.addBindValue(nom);
-    query.addBindValue(prenom);
-    query.addBindValue(adresse);
-    query.addBindValue(telephone);
-    query.addBindValue(email);
-    query.addBindValue(id);
+    query.prepare("UPDATE CLIENT SET "
+                  "NOM = :nom, "
+                  "PRENOM = :prenom, "
+                  "ADRESSE = :adresse, "
+                  "TELEPHONE = :telephone, "
+                  "EMAIL = :email "
+                  "WHERE ID_CLIENT = :id");
+
+    query.bindValue(":nom", nom);
+    query.bindValue(":prenom", prenom);
+    query.bindValue(":adresse", adresse);
+    query.bindValue(":telephone", telephone);
+    query.bindValue(":email", email);
+    query.bindValue(":id", id);
+
     return query.exec();
 }
-
 bool client::supprimer(int idd) {
     QSqlQuery query;
     query.prepare("DELETE FROM CLIENT WHERE ID_CLIENT = :id");

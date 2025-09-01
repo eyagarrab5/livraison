@@ -36,6 +36,7 @@
 #include <QUrl>
 #include <QPixmap>
 #include "qrcode.h"
+#include "setroles.h"
 
 using namespace qrcodegen;
 using namespace std;
@@ -95,7 +96,15 @@ void MainWindow::on_ajouter_2_clicked()
 // modifier employe
 void MainWindow::on_modifier_4_clicked()
 {
-    int id = ui->id_client_mod->text().toUInt();
+    int id = ui->id_client_mod->text().toInt();
+
+    if (id <= 0)
+    {
+        QMessageBox::warning(this, "Erreur", "Veuillez saisir un ID valide");
+        return;
+    }
+
+    // Récupérer les valeurs actuelles des champs
     QString nom = ui->nom_client->text();
     QString prenom = ui->prenom_client->text();
     QString adresse = ui->adresse_client->text();
@@ -106,9 +115,11 @@ void MainWindow::on_modifier_4_clicked()
 
     if (test)
     {
-        QMessageBox::information(nullptr, QObject::tr("Modification réussie"),
-                                 QObject::tr("Le client a été modifié avec succès."), QMessageBox::Cancel);
+        QMessageBox::information(nullptr, "Modification réussie",
+                                 "Le client a été modifié avec succès.", QMessageBox::Cancel);
 
+        // Optionnel : vider les champs après modification
+        ui->id_client_mod->clear();
         ui->nom_client->clear();
         ui->prenom_client->clear();
         ui->adresse_client->clear();
@@ -116,14 +127,55 @@ void MainWindow::on_modifier_4_clicked()
         ui->email_client->clear();
 
         ui->table_clients->setModel(c.afficher());
+
+        // Notification système (optionnel)
+        QSystemTrayIcon *notifyIcon = new QSystemTrayIcon();
+        notifyIcon->setIcon(QIcon("C:/images.jpg"));
+        notifyIcon->show();
+        notifyIcon->showMessage("Modification effectuée", "Client modifié",
+                               QSystemTrayIcon::Information, 15000);
     }
     else
     {
-        QMessageBox::critical(nullptr, QObject::tr("Échec"),
-                              QObject::tr("La modification n'a pas été effectuée."), QMessageBox::Cancel);
+        QMessageBox::critical(nullptr, "Échec",
+                              "La modification n'a pas été effectuée.", QMessageBox::Cancel);
+    }
+}
+void MainWindow::on_id_client_mod_textChanged(const QString &arg1)
+{
+    int id = arg1.toInt();
+    if (id > 0)
+    {
+        chargerDonneesClient(id);
     }
 }
 
+void MainWindow::chargerDonneesClient(int id)
+{
+    QSqlQuery query;
+    query.prepare("SELECT NOM, PRENOM, ADRESSE, TELEPHONE, EMAIL "
+                  "FROM CLIENT WHERE ID_CLIENT = :id");
+    query.bindValue(":id", id);
+
+    if (query.exec() && query.next())
+    {
+        // Remplir automatiquement tous les champs
+        ui->nom_client->setText(query.value(0).toString());
+        ui->prenom_client->setText(query.value(1).toString());
+        ui->adresse_client->setText(query.value(2).toString());
+        ui->num_tel_client->setText(query.value(3).toString());
+        ui->email_client->setText(query.value(4).toString());
+    }
+    else
+    {
+        // Vider les champs si l'ID n'existe pas
+        ui->nom_client->clear();
+        ui->prenom_client->clear();
+        ui->adresse_client->clear();
+        ui->num_tel_client->clear();
+        ui->email_client->clear();
+    }
+}
 //supprimer employe
 void MainWindow::on_supprimer_2_clicked()
 {
@@ -296,48 +348,70 @@ void MainWindow::on_lineEdit_textChanged(const QString &arg1)
 //////////////////////////////////////////////////// ENTREPRISE ///////////////////////////////////////////////////////////
 void MainWindow::on_ajouter_3_clicked()
 {
-    QString nom = ui->nomcom->text();
-    QString reference = ui->reference->text();
+    QString nom = ui->nomcom->text().trimmed();
+    QString reference = ui->reference->text().trimmed();
     QString date = ui->dateEdit->date().toString("yyyy-MM-dd");
-    QString adresse = ui->adresse_liv->text();
-    QString statut = ui->statut->currentText();
+    QString adresse = ui->adresse_liv->text().trimmed();
+    QString statut = ui->statut->currentText().trimmed().simplified();
 
+    // Log pour debug
+    qDebug() << "Statut sélectionné:" << "\"" + statut + "\"" << "| Longueur:" << statut.length();
+
+    // Vérification manuelle des statuts autorisés
+    QStringList statutValide = {"En attente", "En cours", "Livree", "Annulee"};
+    if (!statutValide.contains(statut)) {
+        QMessageBox::warning(this, "Statut invalide",
+                             "Le statut sélectionné n'est pas autorisé.");
+        return;
+    }
+
+    // Création de l'objet commande
     commande cm(nom, reference, date, adresse, statut);
     bool test = cm.ajouter();
 
     if (test)
     {
-        QMessageBox::information(nullptr, QObject::tr("Ajout réussi"),
-                                 QObject::tr("Commande ajoutée avec succès."), QMessageBox::Cancel);
+        QMessageBox::information(this, "Ajout réussi",
+                                 "Commande ajoutée avec succès.");
 
+        // Réinitialisation des champs
         ui->nomcom->clear();
         ui->reference->clear();
         ui->adresse_liv->clear();
         ui->dateEdit->setDate(QDate::currentDate());
         ui->statut->setCurrentIndex(0);
 
+        // Mise à jour de la table
         ui->table_commandes->setModel(cmd.afficher());
 
-        QSystemTrayIcon *notifyIcon = new QSystemTrayIcon();
-        notifyIcon->setIcon(QIcon("C:/images.jpg")); // Assure-toi que ce chemin est valide
+        // Notification système
+        QSystemTrayIcon *notifyIcon = new QSystemTrayIcon(this);
+        notifyIcon->setIcon(QIcon("C:/images.jpg")); // Vérifie que ce chemin est valide
         notifyIcon->show();
         notifyIcon->showMessage("Ajout effectué", "Commande ajoutée", QSystemTrayIcon::Information, 15000);
     }
     else
     {
-        QMessageBox::critical(nullptr, QObject::tr("Échec"),
-                              QObject::tr("L'ajout de la commande n'a pas été effectué."), QMessageBox::Cancel);
+        QMessageBox::critical(this, "Échec",
+                              "L'ajout de la commande n'a pas été effectué.\nVérifie les champs ou la connexion à la base.");
     }
 }
-
 
 // modifier entreprise
 void MainWindow::on_modifier_6_clicked()
 {
-    int id = ui->id_comm_mod->text().toUInt();
+    int id = ui->id_comm_mod->text().toInt();
+
+    if (id <= 0)
+    {
+        QMessageBox::warning(this, "Erreur", "Veuillez saisir un ID valide");
+        return;
+    }
+
+    // Récupérer les valeurs actuelles des champs
     QString nom = ui->nomcom->text();
     QString reference = ui->reference->text();
-    QString date = ui->dateEdit->date().toString("yyyy-MM-dd");
+    QString date = ui->dateEdit->date().toString("yyyy-MM-dd"); // Format Oracle standard
     QString adresse = ui->adresse_liv->text();
     QString statut = ui->statut->currentText();
 
@@ -345,9 +419,11 @@ void MainWindow::on_modifier_6_clicked()
 
     if (test)
     {
-        QMessageBox::information(nullptr, QObject::tr("Modification réussie"),
-                                 QObject::tr("La commande a été modifiée."), QMessageBox::Cancel);
+        QMessageBox::information(nullptr, "Modification réussie",
+                                 "La commande a été modifiée.", QMessageBox::Cancel);
 
+        // Optionnel : vider les champs après modification
+        ui->id_comm_mod->clear();
         ui->nomcom->clear();
         ui->reference->clear();
         ui->adresse_liv->clear();
@@ -356,18 +432,63 @@ void MainWindow::on_modifier_6_clicked()
 
         ui->table_commandes->setModel(cmd.afficher());
 
+        // Notification système
         QSystemTrayIcon *notifyIcon = new QSystemTrayIcon();
         notifyIcon->setIcon(QIcon("C:/images.jpg"));
         notifyIcon->show();
-        notifyIcon->showMessage("Modification effectuée", "Commande modifiée", QSystemTrayIcon::Information, 15000);
+        notifyIcon->showMessage("Modification effectuée", "Commande modifiée",
+                               QSystemTrayIcon::Information, 15000);
     }
     else
     {
-        QMessageBox::critical(nullptr, QObject::tr("Échec"),
-                              QObject::tr("La modification n'a pas été effectuée."), QMessageBox::Cancel);
+        QMessageBox::critical(nullptr, "Échec",
+                              "La modification n'a pas été effectuée.", QMessageBox::Cancel);
+    }
+}
+void MainWindow::on_id_comm_mod_textChanged(const QString &arg1)
+{
+    int id = arg1.toInt();
+    if (id > 0)
+    {
+        chargerDonneesCommande(id);
     }
 }
 
+void MainWindow::chargerDonneesCommande(int id)
+{
+    QSqlQuery query;
+    query.prepare("SELECT NOM_COMMANDE, REFERENCE, DATE_COMMANDE, ADRESSE_LIVRAISON, STATUT "
+                  "FROM COMMANDE WHERE ID_COMMANDE = :id");
+    query.bindValue(":id", id);
+
+    if (query.exec() && query.next())
+    {
+        // Remplir automatiquement tous les champs
+        ui->nomcom->setText(query.value(0).toString());
+        ui->reference->setText(query.value(1).toString());
+
+        QDate date = query.value(2).toDate();
+        if (date.isValid())
+            ui->dateEdit->setDate(date);
+
+        ui->adresse_liv->setText(query.value(3).toString());
+
+        // Trouver l'index du statut dans la combobox
+        QString statut = query.value(4).toString();
+        int index = ui->statut->findText(statut);
+        if (index != -1)
+            ui->statut->setCurrentIndex(index);
+    }
+    else
+    {
+        // Vider les champs si l'ID n'existe pas
+        ui->nomcom->clear();
+        ui->reference->clear();
+        ui->dateEdit->setDate(QDate::currentDate());
+        ui->adresse_liv->clear();
+        ui->statut->setCurrentIndex(0);
+    }
+}
 // supprimer entreprise
 void MainWindow::on_supprimer_15_clicked()
 {
@@ -447,41 +568,55 @@ void MainWindow::on_lineEdit_2_textChanged(const QString &arg1)
     }
 }
 
-// stat entreprise
 void MainWindow::on_supprimer_13_clicked()
 {
-    QSqlQueryModel *model = new QSqlQueryModel();
+    QMap<QString, int> statutCount;
 
-    model->setQuery("SELECT * FROM COMMANDE WHERE STATUT = 'en attente'");
-    float en_attente = model->rowCount();
+    // Compter les commandes par statut
+    QSqlQuery query("SELECT STATUT, COUNT(*) FROM COMMANDE GROUP BY STATUT");
+    while (query.next())
+    {
+        QString statut = query.value(0).toString().toLower();
+        int count = query.value(1).toInt();
+        statutCount[statut] = count;
+    }
 
-    model->setQuery("SELECT * FROM COMMANDE WHERE STATUT = 'en cours'");
-    float en_cours = model->rowCount();
-
-    model->setQuery("SELECT * FROM COMMANDE WHERE STATUT = 'livrée'");
-    float livree = model->rowCount();
-
-    model->setQuery("SELECT * FROM COMMANDE WHERE STATUT = 'annulée'");
-    float annulee = model->rowCount();
+    // Récupérer les valeurs spécifiques
+    float en_attente = statutCount.value("en attente", 0);
+    float en_cours = statutCount.value("en cours", 0);
+    float livree = statutCount.value("livrée", 0);
+    float annulee = statutCount.value("annulée", 0);
 
     float total = en_attente + en_cours + livree + annulee;
 
-    QString a = "En attente " + QString::number((en_attente * 100) / total, 'f', 2) + "%";
-    QString b = "En cours " + QString::number((en_cours * 100) / total, 'f', 2) + "%";
-    QString c = "Livrée " + QString::number((livree * 100) / total, 'f', 2) + "%";
-    QString d = "Annulée " + QString::number((annulee * 100) / total, 'f', 2) + "%";
-
     QPieSeries *series = new QPieSeries();
-    series->append(a, en_attente);
-    series->append(b, en_cours);
-    series->append(c, livree);
-    series->append(d, annulee);
 
-    for (int i = 0; i < series->slices().size(); ++i)
+    // Ajouter les tranches seulement si le total > 0
+    if (total > 0)
     {
-        QPieSlice *slice = series->slices().at(i);
-        if (slice->value() > 0)
-            slice->setLabelVisible();
+        QString a = "En attente " + QString::number((en_attente * 100) / total, 'f', 2) + "%";
+        QString b = "En cours " + QString::number((en_cours * 100) / total, 'f', 2) + "%";
+        QString c = "Livrée " + QString::number((livree * 100) / total, 'f', 2) + "%";
+        QString d = "Annulée " + QString::number((annulee * 100) / total, 'f', 2) + "%";
+
+        series->append(a, en_attente);
+        series->append(b, en_cours);
+        series->append(c, livree);
+        series->append(d, annulee);
+
+        for (int i = 0; i < series->slices().size(); ++i)
+        {
+            QPieSlice *slice = series->slices().at(i);
+            if (slice->value() > 0)
+                slice->setLabelVisible();
+        }
+    }
+    else
+    {
+        // Cas où il n'y a aucune commande
+        series->append("Aucune commande", 1);
+        series->slices().first()->setLabelVisible();
+        series->slices().first()->setLabel("Aucune donnée disponible");
     }
 
     QChart *chart = new QChart();
@@ -573,4 +708,36 @@ void MainWindow::on_toutes_les_commandes_clicked()
 {
     ui->table_commandes->setModel(cmd.afficher());
 }
+void MainWindow::setRole(QString role)
+{
+    if (role == "admin") {
+        ui->ajouter_3->setVisible(true);
+        ui->modifier_6->setVisible(true);
+        ui->supprimer_15->setVisible(true);
+        ui->commandes_du_jour->setVisible(true);
+        ui->toutes_les_commandes->setVisible(true);
+        // etc.
+    } else if (role == "logistique") {
+        ui->ajouter_3->setVisible(true);
+        ui->modifier_6->setVisible(true);
+        ui->supprimer_15->setVisible(true);
+        ui->commandes_du_jour->setVisible(false);
+        ui->toutes_les_commandes->setVisible(false);
+        // etc.
+    } else if (role == "livreur") {
+        ui->ajouter_3->setVisible(false);
+        ui->modifier_6->setVisible(false);
+        ui->supprimer_15->setVisible(false);
+        ui->commandes_du_jour->setVisible(true);
+        ui->toutes_les_commandes->setVisible(true);
+        // etc.
+    }
+}
+void MainWindow::on_btn_retour_roles_clicked()
+{
+    SetRoles *rolesPage = new SetRoles();
+    rolesPage->show();
+    this->close(); // Ferme la fenêtre principale
+}
+
 

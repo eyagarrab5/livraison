@@ -710,29 +710,48 @@ void MainWindow::on_toutes_les_commandes_clicked()
 }
 void MainWindow::setRole(QString role)
 {
-    if (role == "admin") {
-        ui->ajouter_3->setVisible(true);
-        ui->modifier_6->setVisible(true);
-        ui->supprimer_15->setVisible(true);
-        ui->commandes_du_jour->setVisible(true);
-        ui->toutes_les_commandes->setVisible(true);
-        // etc.
-    } else if (role == "logistique") {
-        ui->ajouter_3->setVisible(true);
-        ui->modifier_6->setVisible(true);
-        ui->supprimer_15->setVisible(true);
-        ui->commandes_du_jour->setVisible(false);
-        ui->toutes_les_commandes->setVisible(false);
-        // etc.
-    } else if (role == "livreur") {
-        ui->ajouter_3->setVisible(false);
-        ui->modifier_6->setVisible(false);
-        ui->supprimer_15->setVisible(false);
-        ui->commandes_du_jour->setVisible(true);
-        ui->toutes_les_commandes->setVisible(true);
-        // etc.
-    }
+    // Gestion des commandes
+    ui->ajouter_3->setVisible(role == "admin" || role == "logistique");
+    ui->modifier_6->setVisible(role == "admin" || role == "logistique");
+    ui->supprimer_15->setVisible(role == "admin" || role == "logistique");
+
+    // Affichage des commandes
+    ui->commandes_du_jour->setVisible(true); // tous les rôles
+    ui->toutes_les_commandes->setVisible(true); // tous les rôles
+    ui->table_commandes->setVisible(true); // tous les rôles
+
+    // Tri commandes
+    ui->supprimer_9->setVisible(true);  // trie par ID
+    ui->supprimer_10->setVisible(true); // trie par nom
+    ui->supprimer_11->setVisible(true); // trie par référence
+
+    // Recherche commandes
+    ui->lineEdit_2->setVisible(true); // champ de recherche
+
+    // Statistiques commandes
+    ui->supprimer_13->setVisible(true); // bouton stats
+
+    // PDF commandes
+    ui->supprimer_12->setVisible(true); // bouton PDF
+
+    // Gestion des clients
+    ui->ajouter_2->setVisible(role == "admin");
+    ui->modifier_4->setVisible(role == "admin");
+    ui->supprimer_2->setVisible(role == "admin");
+
+    // Affichage des clients
+    ui->table_clients->setVisible(true); // tous les rôles
+
+    // Tri, recherche, stats clients
+    ui->lineEdit->setVisible(true);
+    ui->supprimer_3->setVisible(true);
+    ui->supprimer_4->setVisible(true);
+    ui->supprimer_5->setVisible(true);
+
+    ui->supprimer_7->setVisible(true);
+    ui->supprimer_6->setVisible(true);
 }
+
 void MainWindow::on_btn_retour_roles_clicked()
 {
     SetRoles *rolesPage = new SetRoles();

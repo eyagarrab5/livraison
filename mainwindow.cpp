@@ -64,19 +64,60 @@ MainWindow::~MainWindow()
 //ajout employe
 void MainWindow::on_ajouter_2_clicked()
 {
-    QString nom = ui->nom_client->text();
-    QString prenom = ui->prenom_client->text();
-    QString adresse = ui->adresse_client->text();
-    QString telephone = ui->num_tel_client->text();
-    QString email = ui->email_client->text();
+    QString nom = ui->nom_client->text().trimmed();
+    QString prenom = ui->prenom_client->text().trimmed();
+    QString adresse = ui->adresse_client->text().trimmed();
+    QString telephone = ui->num_tel_client->text().trimmed();
+    QString email = ui->email_client->text().trimmed();
+
+    // 🔍 Nom et prénom
+    if (nom.length() < 3 || prenom.length() < 3) {
+        QMessageBox::warning(this, "Nom/Prénom invalide", "Le nom et le prénom doivent contenir au moins 3 caractères.");
+        return;
+    }
+
+    // 🔍 Adresse
+    if (adresse.length() < 5) {
+        QMessageBox::warning(this, "Adresse invalide", "L'adresse doit contenir au moins 5 caractères.");
+        return;
+    }
+
+    // 🔍 Téléphone : format + unicité
+    if (!(telephone.startsWith("+216") && telephone.length() == 12) &&
+        !(telephone.startsWith("+33") && telephone.length() == 13) &&
+        !(telephone.startsWith("+49") && telephone.length() == 13)) {
+        QMessageBox::warning(this, "Téléphone invalide", "Le numéro doit commencer par +216 (8 chiffres), +33 (9 chiffres), ou +49 (9 chiffres).");
+        return;
+    }
+
+    QSqlQuery checkTel;
+    checkTel.prepare("SELECT COUNT(*) FROM CLIENT WHERE TELEPHONE = :tel");
+    checkTel.bindValue(":tel", telephone);
+    if (checkTel.exec() && checkTel.next() && checkTel.value(0).toInt() > 0) {
+        QMessageBox::warning(this, "Téléphone existant", "Ce numéro est déjà utilisé par un autre client.");
+        return;
+    }
+
+    // 🔍 Email : non vide + unicité
+    if (email.isEmpty()) {
+        QMessageBox::warning(this, "Email manquant", "Veuillez saisir une adresse email.");
+        return;
+    }
+
+    QSqlQuery checkEmail;
+    checkEmail.prepare("SELECT COUNT(*) FROM CLIENT WHERE EMAIL = :email");
+    checkEmail.bindValue(":email", email);
+    if (checkEmail.exec() && checkEmail.next() && checkEmail.value(0).toInt() > 0) {
+        QMessageBox::warning(this, "Email existant", "Cette adresse email est déjà utilisée par un autre client.");
+        return;
+    }
 
     client cl(nom, prenom, adresse, telephone, email);
     bool test = cl.ajouter();
 
     if (test)
     {
-        QMessageBox::information(nullptr, QObject::tr("Ajout réussi"),
-                                 QObject::tr("Client ajouté avec succès."), QMessageBox::Cancel);
+        QMessageBox::information(this, "Ajout réussi", "Client ajouté avec succès.");
 
         ui->nom_client->clear();
         ui->prenom_client->clear();
@@ -84,41 +125,74 @@ void MainWindow::on_ajouter_2_clicked()
         ui->num_tel_client->clear();
         ui->email_client->clear();
 
-        ui->table_clients->setModel(c.afficher()); // Assure-toi que le nom est bien table_client
+        ui->table_clients->setModel(c.afficher());
     }
     else
     {
-        QMessageBox::critical(nullptr, QObject::tr("Échec"),
-                              QObject::tr("Ajout non effectué."), QMessageBox::Cancel);
+        QMessageBox::critical(this, "Erreur", "L'ajout n'a pas été effectué. Vérifiez les données ou la connexion à la base.");
     }
 }
-
-// modifier employe
 void MainWindow::on_modifier_4_clicked()
 {
     int id = ui->id_client_mod->text().toInt();
 
-    if (id <= 0)
-    {
-        QMessageBox::warning(this, "Erreur", "Veuillez saisir un ID valide");
+    if (id <= 0) {
+        QMessageBox::warning(this, "ID invalide", "Veuillez saisir un ID client valide.");
         return;
     }
 
-    // Récupérer les valeurs actuelles des champs
-    QString nom = ui->nom_client->text();
-    QString prenom = ui->prenom_client->text();
-    QString adresse = ui->adresse_client->text();
-    QString telephone = ui->num_tel_client->text();
-    QString email = ui->email_client->text();
+    QString nom = ui->nom_client->text().trimmed();
+    QString prenom = ui->prenom_client->text().trimmed();
+    QString adresse = ui->adresse_client->text().trimmed();
+    QString telephone = ui->num_tel_client->text().trimmed();
+    QString email = ui->email_client->text().trimmed();
+
+    if (nom.length() < 3 || prenom.length() < 3) {
+        QMessageBox::warning(this, "Nom/Prénom invalide", "Le nom et le prénom doivent contenir au moins 3 caractères.");
+        return;
+    }
+
+    if (adresse.length() < 5) {
+        QMessageBox::warning(this, "Adresse invalide", "L'adresse doit contenir au moins 5 caractères.");
+        return;
+    }
+
+    if (!(telephone.startsWith("+216") && telephone.length() == 12) &&
+        !(telephone.startsWith("+33") && telephone.length() == 13) &&
+        !(telephone.startsWith("+49") && telephone.length() == 13)) {
+        QMessageBox::warning(this, "Téléphone invalide", "Le numéro doit commencer par +216 (8 chiffres), +33 (9 chiffres), ou +49 (9 chiffres).");
+        return;
+    }
+
+    QSqlQuery checkTel;
+    checkTel.prepare("SELECT COUNT(*) FROM CLIENT WHERE TELEPHONE = :tel AND ID_CLIENT != :id");
+    checkTel.bindValue(":tel", telephone);
+    checkTel.bindValue(":id", id);
+    if (checkTel.exec() && checkTel.next() && checkTel.value(0).toInt() > 0) {
+        QMessageBox::warning(this, "Téléphone existant", "Ce numéro est déjà utilisé par un autre client.");
+        return;
+    }
+
+    if (email.isEmpty()) {
+        QMessageBox::warning(this, "Email manquant", "Veuillez saisir une adresse email.");
+        return;
+    }
+
+    QSqlQuery checkEmail;
+    checkEmail.prepare("SELECT COUNT(*) FROM CLIENT WHERE EMAIL = :email AND ID_CLIENT != :id");
+    checkEmail.bindValue(":email", email);
+    checkEmail.bindValue(":id", id);
+    if (checkEmail.exec() && checkEmail.next() && checkEmail.value(0).toInt() > 0) {
+        QMessageBox::warning(this, "Email existant", "Cette adresse email est déjà utilisée par un autre client.");
+        return;
+    }
 
     bool test = c.modifier(id, nom, prenom, adresse, telephone, email);
 
     if (test)
     {
-        QMessageBox::information(nullptr, "Modification réussie",
-                                 "Le client a été modifié avec succès.", QMessageBox::Cancel);
+        QMessageBox::information(this, "Modification réussie", "Client modifié avec succès.");
 
-        // Optionnel : vider les champs après modification
         ui->id_client_mod->clear();
         ui->nom_client->clear();
         ui->prenom_client->clear();
@@ -128,19 +202,18 @@ void MainWindow::on_modifier_4_clicked()
 
         ui->table_clients->setModel(c.afficher());
 
-        // Notification système (optionnel)
         QSystemTrayIcon *notifyIcon = new QSystemTrayIcon();
         notifyIcon->setIcon(QIcon("C:/images.jpg"));
         notifyIcon->show();
-        notifyIcon->showMessage("Modification effectuée", "Client modifié",
-                               QSystemTrayIcon::Information, 15000);
+        notifyIcon->showMessage("Modification effectuée", "Client modifié", QSystemTrayIcon::Information, 15000);
     }
     else
     {
-        QMessageBox::critical(nullptr, "Échec",
-                              "La modification n'a pas été effectuée.", QMessageBox::Cancel);
+        QMessageBox::critical(this, "Erreur", "La modification n'a pas été effectuée. Vérifiez les données ou la connexion à la base.");
     }
 }
+
+
 void MainWindow::on_id_client_mod_textChanged(const QString &arg1)
 {
     int id = arg1.toInt();
@@ -350,101 +423,150 @@ void MainWindow::on_ajouter_3_clicked()
 {
     QString nom = ui->nomcom->text().trimmed();
     QString reference = ui->reference->text().trimmed();
-    QString date = ui->dateEdit->date().toString("yyyy-MM-dd");
+    QDate dateObj = ui->dateEdit->date();
+    QString date = dateObj.toString("yyyy-MM-dd");
     QString adresse = ui->adresse_liv->text().trimmed();
     QString statut = ui->statut->currentText().trimmed().simplified();
 
-    // Log pour debug
-    qDebug() << "Statut sélectionné:" << "\"" + statut + "\"" << "| Longueur:" << statut.length();
-
-    // Vérification manuelle des statuts autorisés
-    QStringList statutValide = {"En attente", "En cours", "Livree", "Annulee"};
-    if (!statutValide.contains(statut)) {
-        QMessageBox::warning(this, "Statut invalide",
-                             "Le statut sélectionné n'est pas autorisé.");
+    // 🔍 Nom
+    if (nom.length() < 3) {
+        QMessageBox::warning(this, "Nom invalide", "Le nom de commande doit contenir au moins 3 caractères.");
         return;
     }
 
-    // Création de l'objet commande
+    // 🔍 Référence
+    if (reference.isEmpty()) {
+        QMessageBox::warning(this, "Référence manquante", "Veuillez saisir une référence.");
+        return;
+    }
+
+    QSqlQuery checkRef;
+    checkRef.prepare("SELECT COUNT(*) FROM COMMANDE WHERE REFERENCE = :ref");
+    checkRef.bindValue(":ref", reference);
+    if (checkRef.exec() && checkRef.next() && checkRef.value(0).toInt() > 0) {
+        QMessageBox::warning(this, "Référence existante", "Cette référence est déjà utilisée.");
+        return;
+    }
+
+    // 🔍 Date
+    if (dateObj < QDate::currentDate()) {
+        QMessageBox::warning(this, "Date invalide", "La date de commande doit être aujourd'hui ou dans le futur.");
+        return;
+    }
+
+    // 🔍 Adresse
+    if (adresse.length() < 5) {
+        QMessageBox::warning(this, "Adresse invalide", "L'adresse de livraison doit contenir au moins 5 caractères.");
+        return;
+    }
+
+    // 🔍 Statut
+    QStringList statutValide = {"En attente", "En cours", "Livree", "Annulee"};
+    if (!statutValide.contains(statut)) {
+        QMessageBox::warning(this, "Statut invalide", "Le statut sélectionné n'est pas autorisé.");
+        return;
+    }
+
     commande cm(nom, reference, date, adresse, statut);
     bool test = cm.ajouter();
 
     if (test)
     {
-        QMessageBox::information(this, "Ajout réussi",
-                                 "Commande ajoutée avec succès.");
+        QMessageBox::information(this, "Ajout réussi", "Commande ajoutée avec succès.");
 
-        // Réinitialisation des champs
         ui->nomcom->clear();
         ui->reference->clear();
         ui->adresse_liv->clear();
         ui->dateEdit->setDate(QDate::currentDate());
         ui->statut->setCurrentIndex(0);
-
-        // Mise à jour de la table
         ui->table_commandes->setModel(cmd.afficher());
 
-        // Notification système
         QSystemTrayIcon *notifyIcon = new QSystemTrayIcon(this);
-        notifyIcon->setIcon(QIcon("C:/images.jpg")); // Vérifie que ce chemin est valide
+        notifyIcon->setIcon(QIcon("C:/images.jpg"));
         notifyIcon->show();
         notifyIcon->showMessage("Ajout effectué", "Commande ajoutée", QSystemTrayIcon::Information, 15000);
     }
     else
     {
-        QMessageBox::critical(this, "Échec",
-                              "L'ajout de la commande n'a pas été effectué.\nVérifie les champs ou la connexion à la base.");
+        QMessageBox::critical(this, "Erreur", "L'ajout n'a pas été effectué. Vérifiez les données ou la connexion à la base.");
     }
 }
-
-// modifier entreprise
 void MainWindow::on_modifier_6_clicked()
 {
     int id = ui->id_comm_mod->text().toInt();
 
-    if (id <= 0)
-    {
-        QMessageBox::warning(this, "Erreur", "Veuillez saisir un ID valide");
+    if (id <= 0) {
+        QMessageBox::warning(this, "ID invalide", "Veuillez saisir un ID de commande valide.");
         return;
     }
 
-    // Récupérer les valeurs actuelles des champs
-    QString nom = ui->nomcom->text();
-    QString reference = ui->reference->text();
-    QString date = ui->dateEdit->date().toString("yyyy-MM-dd"); // Format Oracle standard
-    QString adresse = ui->adresse_liv->text();
-    QString statut = ui->statut->currentText();
+    QString nom = ui->nomcom->text().trimmed();
+    QString reference = ui->reference->text().trimmed();
+    QDate dateObj = ui->dateEdit->date();
+    QString date = dateObj.toString("yyyy-MM-dd");
+    QString adresse = ui->adresse_liv->text().trimmed();
+    QString statut = ui->statut->currentText().trimmed().simplified();
+
+    if (nom.length() < 3) {
+        QMessageBox::warning(this, "Nom invalide", "Le nom de commande doit contenir au moins 3 caractères.");
+        return;
+    }
+
+    if (reference.isEmpty()) {
+        QMessageBox::warning(this, "Référence manquante", "Veuillez saisir une référence.");
+        return;
+    }
+
+    QSqlQuery checkRef;
+    checkRef.prepare("SELECT COUNT(*) FROM COMMANDE WHERE REFERENCE = :ref AND ID_COMMANDE != :id");
+    checkRef.bindValue(":ref", reference);
+    checkRef.bindValue(":id", id);
+    if (checkRef.exec() && checkRef.next() && checkRef.value(0).toInt() > 0) {
+        QMessageBox::warning(this, "Référence existante", "Cette référence est déjà utilisée par une autre commande.");
+        return;
+    }
+
+    if (dateObj < QDate::currentDate()) {
+        QMessageBox::warning(this, "Date invalide", "La date de commande doit être aujourd'hui ou dans le futur.");
+        return;
+    }
+
+    if (adresse.length() < 5) {
+        QMessageBox::warning(this, "Adresse invalide", "L'adresse de livraison doit contenir au moins 5 caractères.");
+        return;
+    }
+
+    QStringList statutValide = {"En attente", "En cours", "Livree", "Annulee"};
+    if (!statutValide.contains(statut)) {
+        QMessageBox::warning(this, "Statut invalide", "Le statut sélectionné n'est pas autorisé.");
+        return;
+    }
 
     bool test = cmd.modifier(id, nom, reference, date, adresse, statut);
 
     if (test)
     {
-        QMessageBox::information(nullptr, "Modification réussie",
-                                 "La commande a été modifiée.", QMessageBox::Cancel);
+        QMessageBox::information(this, "Modification réussie", "Commande modifiée avec succès.");
 
-        // Optionnel : vider les champs après modification
         ui->id_comm_mod->clear();
         ui->nomcom->clear();
         ui->reference->clear();
         ui->adresse_liv->clear();
         ui->dateEdit->setDate(QDate::currentDate());
         ui->statut->setCurrentIndex(0);
-
         ui->table_commandes->setModel(cmd.afficher());
 
-        // Notification système
         QSystemTrayIcon *notifyIcon = new QSystemTrayIcon();
         notifyIcon->setIcon(QIcon("C:/images.jpg"));
         notifyIcon->show();
-        notifyIcon->showMessage("Modification effectuée", "Commande modifiée",
-                               QSystemTrayIcon::Information, 15000);
+        notifyIcon->showMessage("Modification effectuée", "Commande modifiée", QSystemTrayIcon::Information, 15000);
     }
     else
     {
-        QMessageBox::critical(nullptr, "Échec",
-                              "La modification n'a pas été effectuée.", QMessageBox::Cancel);
+        QMessageBox::critical(this, "Erreur", "La modification n'a pas été effectuée. Vérifiez les données ou la connexion à la base.");
     }
 }
+
 void MainWindow::on_id_comm_mod_textChanged(const QString &arg1)
 {
     int id = arg1.toInt();
